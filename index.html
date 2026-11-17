@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101a35">
+<title>Sala do Futuro PRO</title>
+<style>
+:root{--bg:#f4f6fb;--ink:#17213b;--muted:#75809a;--navy:#101a35;--blue:#315cf5;--blue2:#6d8cff;--line:#e7eaf2;--white:#fff;--green:#159b72;--orange:#f39b35;--red:#df5361;--shadow:0 12px 35px rgba(31,48,91,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.app{min-height:100vh;display:grid;grid-template-columns:250px 1fr}
+.sidebar{background:var(--navy);color:#fff;padding:26px 18px;display:flex;flex-direction:column;gap:28px}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px}.brand-mark{height:42px;width:42px;border-radius:14px;background:linear-gradient(135deg,#7292ff,#315cf5);display:grid;place-items:center;font-size:22px;box-shadow:0 8px 22px #315cf555}.brand strong{display:block;font-size:16px;letter-spacing:.2px}.brand small{color:#9eadd4;font-size:11px}
+.nav{display:grid;gap:7px}.nav button{border:0;background:transparent;color:#aab5d0;text-align:left;padding:13px 14px;border-radius:12px;display:flex;align-items:center;gap:12px;font-weight:600}.nav button.active,.nav button:hover{background:#25345b;color:#fff}.nav .ico{width:22px;text-align:center;font-size:17px}
+.sidebar-foot{margin-top:auto;border-top:1px solid #2a385d;padding:18px 8px 0;color:#9eadd4;font-size:12px;line-height:1.55}
+.main{min-width:0;padding:28px clamp(16px,3vw,42px) 50px;max-width:1500px;width:100%;margin:auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:28px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--blue);font-weight:800}.topbar h1{font-size:clamp(24px,3vw,32px);margin:5px 0 0;letter-spacing:-.8px}.top-actions{display:flex;gap:10px;align-items:center}.date-chip{background:#fff;border:1px solid var(--line);padding:10px 14px;border-radius:12px;color:var(--muted);font-size:13px}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:750;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.18s}.btn-primary{background:var(--blue);color:#fff;box-shadow:0 7px 18px #315cf533}.btn-primary:hover{background:#244ce0;transform:translateY(-1px)}.btn-light{background:#fff;border:1px solid var(--line);color:var(--ink)}.btn-dark{background:var(--navy);color:#fff}.btn-small{padding:8px 11px;font-size:12px;border-radius:9px}
+.hero{background:linear-gradient(115deg,#17264b,#315cf5 72%,#7591ff);border-radius:22px;padding:25px 28px;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:18px;box-shadow:0 15px 35px #315cf52a;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;width:220px;height:220px;border:1px solid #ffffff30;border-radius:50%;right:12%;top:-125px;box-shadow:0 0 0 24px #ffffff0d,0 0 0 50px #ffffff0a}.hero h2{font-size:23px;margin:0 0 8px;letter-spacing:-.5px}.hero p{margin:0;color:#e0e7ff;max-width:620px;font-size:14px;line-height:1.6}.hero .btn{background:#fff;color:#2449c7;position:relative;z-index:1;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:20px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:var(--shadow)}.stat-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:700}.stat-icon{height:34px;width:34px;display:grid;place-items:center;border-radius:11px;background:#edf1ff;color:var(--blue);font-size:16px}.stat strong{display:block;font-size:29px;margin:10px 0 2px;letter-spacing:-1px}.stat small{color:var(--muted);font-size:11px}
+.content-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.85fr);gap:16px}.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);min-width:0}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}.panel h3{margin:0;font-size:16px}.muted{color:var(--muted)}.task-list{display:grid;gap:10px}.task{border:1px solid var(--line);border-radius:13px;padding:13px;display:flex;align-items:center;gap:12px}.task-check{width:20px;height:20px;accent-color:var(--blue);flex:none}.task-main{min-width:0;flex:1}.task-title{font-weight:750;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.task-meta{color:var(--muted);font-size:11px;margin-top:4px}.tag{font-size:10px;font-weight:800;padding:5px 8px;border-radius:20px;background:#edf1ff;color:#315cf5;white-space:nowrap}.tag.overdue{background:#fff0f1;color:var(--red)}.tag.done{background:#e7f7f1;color:var(--green)}
+.progress-wrap{margin:17px 0}.progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:8px}.progress{height:9px;border-radius:10px;background:#edf0f6;overflow:hidden}.progress span{height:100%;display:block;background:linear-gradient(90deg,#315cf5,#70a1ff);border-radius:10px;width:0}
+.subjects{display:grid;gap:12px}.subject-row{display:flex;align-items:center;gap:10px}.subject-dot{width:9px;height:9px;border-radius:50%;background:var(--blue)}.subject-name{flex:1;font-size:12px;font-weight:700}.subject-count{font-size:11px;color:var(--muted)}
+.page{display:none}.page.active{display:block}.page-intro{margin:-12px 0 20px;color:var(--muted);font-size:13px;line-height:1.6}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}.field{background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px 12px;color:var(--ink);min-width:0}.toolbar input{flex:1;min-width:160px}.toolbar select{min-width:145px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-group{display:grid;gap:6px}.form-group label{font-size:12px;font-weight:750;color:#56617a}.form-group.full{grid-column:1/-1}.form-group textarea{min-height:90px;resize:vertical}.empty{padding:26px 12px;text-align:center;color:var(--muted);font-size:13px;border:1px dashed #d7ddec;border-radius:13px}
+.assistant-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:16px}.assistant-note{background:#f0f4ff;border:1px solid #dce5ff;color:#42547f;padding:13px;border-radius:12px;font-size:12px;line-height:1.6;margin-bottom:14px}.output{white-space:pre-wrap;background:#f8f9fc;border:1px solid var(--line);border-radius:12px;padding:14px;min-height:145px;font-size:12px;line-height:1.6;color:#46516b}
+.link-card{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:13px;padding:14px;margin-top:10px}.link-card strong{font-size:13px}.link-card small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.notice{border-left:3px solid var(--orange);background:#fff8ed;padding:12px 14px;border-radius:9px;color:#76572e;font-size:12px;line-height:1.55}
+.footer{text-align:center;color:#9aa3b6;font-size:11px;margin:28px 0 0}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#142143;color:white;padding:11px 16px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.25s;z-index:20}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.mobile-menu{display:none}
+@media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{padding:13px 15px;gap:12px;position:sticky;top:0;z-index:10}.brand{padding:0 3px}.brand-mark{height:36px;width:36px}.nav{display:flex;overflow:auto;gap:5px}.nav button{white-space:nowrap;padding:9px 11px;font-size:12px}.nav .ico{font-size:15px;width:auto}.sidebar-foot{display:none}.main{padding:20px 14px 40px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.content-grid,.assistant-grid{grid-template-columns:1fr}.hero{padding:21px;align-items:flex-start;flex-direction:column}.hero .btn{width:100%}.topbar{align-items:flex-start}.date-chip{display:none}}
+@media(max-width:520px){.stats{gap:9px}.stat{padding:14px}.stat strong{font-size:25px}.panel{padding:15px}.form-grid{grid-template-columns:1fr}.form-group.full{grid-column:auto}.top-actions .btn{padding:10px 12px;font-size:12px}.task{padding:11px}.task .tag{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">✦</div><div><strong>SALA DO FUTURO PRO</strong><small>Seu espaço de aprendizagem</small></div></div>
+    <nav class="nav" aria-label="Navegação principal">
+      <button class="active" data-page="dashboard"><span class="ico">▦</span> Visão geral</button>
+      <button data-page="activities"><span class="ico">☷</span> Atividades</button>
+      <button data-page="assistant"><span class="ico">✧</span> Assistente IA</button>
+      <button data-page="subjects"><span class="ico">▤</span> Matérias</button>
+      <button data-page="guide"><span class="ico">ⓘ</span> Como funciona</button>
+    </nav>
+    <div class="sidebar-foot">Organize seus estudos, acompanhe suas tarefas e aprenda no seu ritmo.<br><br>Seus dados ficam salvos neste dispositivo.</div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div><div class="eyebrow">PAINEL DO ESTUDANTE</div><h1 id="pageTitle">Bom dia! Vamos avançar? 👋</h1></div>
+      <div class="top-actions"><span class="date-chip" id="todayLabel"></span><a class="btn btn-light" href="https://saladofuturo.educacao.sp.gov.br/login-alunos" target="_blank" rel="noopener">Abrir SED ↗</a></div>
+    </header>
+
+    <section class="page active" id="dashboard">
+      <div class="hero"><div><h2>Seu futuro começa com uma tarefa de cada vez.</h2><p>Registre suas atividades, acompanhe os prazos e use o assistente para entender questões e estudar com mais confiança.</p></div><button class="btn" data-go="activities">＋ Adicionar atividade</button></div>
+      <div class="stats">
+        <div class="stat"><div class="stat-top">Pendentes <span class="stat-icon">☷</span></div><strong id="pendingCount">0</strong><small>Atividades para concluir</small></div>
+        <div class="stat"><div class="stat-top">Atrasadas <span class="stat-icon" style="background:#fff0f1;color:#df5361">!</span></div><strong id="overdueCount">0</strong><small>Confira os prazos</small></div>
+        <div class="stat"><div class="stat-top">Concluídas <span class="stat-icon" style="background:#e7f7f1;color:#159b72">✓</span></div><strong id="doneCount">0</strong><small>Você está progredindo</small></div>
+        <div class="stat"><div class="stat-top">Progresso <span class="stat-icon" style="background:#fff5e8;color:#d88925">↗</span></div><strong id="progressCount">0%</strong><small>Das atividades cadastradas</small></div>
+      </div>
+      <div class="content-grid">
+        <div class="panel"><div class="panel-head"><h3>Próximas atividades</h3><button class="btn btn-light btn-small" data-go="activities">Ver todas</button></div><div class="task-list" id="upcomingList"></div></div>
+        <div class="panel"><div class="panel-head"><h3>Seu progresso</h3><span class="muted" style="font-size:11px">Geral</span></div><div class="progress-wrap"><div class="progress-label"><span>Atividades concluídas</span><b id="progressText">0%</b></div><div class="progress"><span id="progressBar"></span></div></div><div class="panel-head" style="margin-top:22px"><h3>Por matéria</h3></div><div class="subjects" id="subjectSummary"></div></div>
+      </div>
+    </section>
+
+    <section class="page" id="activities">
+      <div class="panel">
+        <div class="panel-head"><div><h3>Minhas atividades</h3><p class="page-intro" style="margin:5px 0 0">Cadastre tarefas que você encontrou na SED e acompanhe cada prazo.</p></div><span class="tag" id="activityTotal">0 tarefas</span></div>
+        <form id="activityForm" class="form-grid" style="padding:14px;background:#f8f9fc;border-radius:14px;margin-bottom:18px">
+          <div class="form-group"><label for="taskName">Nome da atividade</label><input class="field" id="taskName" required maxlength="100" placeholder="Ex.: Lista de exercícios 3"></div>
+          <div class="form-group"><label for="taskSubject">Matéria</label><select class="field" id="taskSubject"><option>Matemática</option><option>Língua Portuguesa</option><option>Ciências</option><option>História</option><option>Geografia</option><option>Inglês</option><option>Educação Física</option><option>Arte</option><option>Tecnologia</option><option>Outra</option></select></div>
+          <div class="form-group"><label for="taskDue">Prazo</label><input class="field" id="taskDue" type="date"></div>
+          <div class="form-group"><label for="taskPriority">Prioridade</label><select class="field" id="taskPriority"><option value="Normal">Normal</option><option value="Alta">Alta</option><option value="Baixa">Baixa</option></select></div>
+          <div class="form-group full"><label for="taskNotes">Observações (opcional)</label><textarea class="field" id="taskNotes" placeholder="Anote instruções, página do livro ou o que falta fazer..."></textarea></div>
+          <div class="form-group full"><button class="btn btn-primary" type="submit">＋ Salvar atividade</button></div>
+        </form>
+        <div class="toolbar"><input class="field" id="searchTasks" placeholder="Buscar atividade..."><select class="field" id="filterSubject"><option value="">Todas as matérias</option></select><select class="field" id="filterStatus"><option value="">Todos os status</option><option value="pending">Pendentes</option><option value="done">Concluídas</option><option value="overdue">Atrasadas</option></select></div>
+        <div class="task-list" id="allTasks"></div>
+      </div>
+    </section>
+
+    <section class="page" id="assistant">
+      <div class="assistant-grid">
+        <div class="panel">
+          <div class="panel-head"><h3>✧ Assistente de estudos</h3><span class="tag">Apoio escolar</span></div>
+          <div class="assistant-note">Escreva ou cole a questão para preparar um pedido de ajuda. O assistente orienta a explicação passo a passo, mostra como chegar à resposta e sugere uma forma de conferir o resultado.</div>
+          <div class="form-group"><label for="aiSubject">Matéria</label><select class="field" id="aiSubject"><option>Matemática</option><option>Língua Portuguesa</option><option>Ciências</option><option>História</option><option>Geografia</option><option>Inglês</option><option>Outra</option></select></div>
+          <div class="form-group" style="margin-top:12px"><label for="aiQuestion">Cole a questão ou descreva a dúvida</label><textarea class="field" id="aiQuestion" style="min-height:170px" placeholder="Ex.: Resolva a equação 2x + 5 = 17 e explique cada etapa..."></textarea></div>
+          <div class="form-group" style="margin-top:12px"><label for="aiLevel">Como prefere a explicação?</label><select class="field" id="aiLevel"><option>Simples e direta</option><option>Passo a passo, com detalhes</option><option>Com exemplos para praticar</option></select></div>
+          <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:14px"><button class="btn btn-primary" id="makePrompt">Preparar ajuda com IA</button><button class="btn btn-light" id="clearPrompt">Limpar</button></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Seu pedido preparado</h3></div>
+          <div class="output" id="promptOutput">Sua solicitação aparecerá aqui. Depois, copie e abra o ChatGPT para receber a explicação.</div>
+          <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:12px"><button class="btn btn-dark" id="copyPrompt">Copiar pedido</button><button class="btn btn-light" id="openChatGPT">Abrir ChatGPT ↗</button></div>
+          <p class="muted" style="font-size:11px;line-height:1.6;margin-top:14px">Se a atividade estiver em uma foto, anexe a imagem também na conversa do ChatGPT. Esta versão prepara o pedido, mas ainda não possui uma API de IA própria.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="subjects">
+      <div class="panel"><div class="panel-head"><h3>Matérias e atividades</h3></div><p class="page-intro">Veja quantas atividades você cadastrou em cada matéria. As informações são calculadas a partir da sua lista.</p><div class="subjects" id="subjectDetails"></div></div>
+    </section>
+
+    <section class="page" id="guide">
+      <div class="panel">
+        <div class="panel-head"><h3>Como usar o Sala do Futuro PRO</h3></div>
+        <div class="notice">Este é um painel independente de organização e apoio aos estudos. Ele não é um produto oficial da Secretaria da Educação e não envia respostas nem entregas para a SED.</div>
+        <div style="display:grid;gap:16px;margin-top:20px">
+          <div><b>1. Consulte suas tarefas na SED</b><p class="muted" style="font-size:13px;line-height:1.6">Abra o portal oficial em outra aba, confira as atividades e os prazos e volte aqui para cadastrar o que precisa fazer.</p><a class="btn btn-light btn-small" href="https://saladofuturo.educacao.sp.gov.br/login-alunos" target="_blank" rel="noopener">Acessar Sala do Futuro oficial ↗</a></div>
+          <div><b>2. Organize as pendências</b><p class="muted" style="font-size:13px;line-height:1.6">Na seção Atividades, adicione o nome, a matéria e o prazo. Marque como concluída quando terminar.</p></div>
+          <div><b>3. Estude com o assistente</b><p class="muted" style="font-size:13px;line-height:1.6">Cole uma questão no Assistente IA, prepare o pedido, copie e abra o ChatGPT. Peça explicações e confira se entendeu o raciocínio.</p></div>
+          <div><b>4. Seus dados e privacidade</b><p class="muted" style="font-size:13px;line-height:1.6">As atividades ficam salvas no armazenamento local deste navegador. Não coloque senha, RA, RG, CPF ou outros dados pessoais aqui. Limpar os dados do navegador pode apagar suas tarefas.</p></div>
+        </div>
+      </div>
+    </section>
+    <div class="footer">SALA DO FUTURO PRO · Ferramenta independente de organização escolar · Não oficial</div>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const STORE_KEY='sala_futuro_pro_activities_v1';
+const subjects=['Matemática','Língua Portuguesa','Ciências','História','Geografia','Inglês','Educação Física','Arte','Tecnologia','Outra'];
+let tasks=loadTasks();
+let currentPrompt='';
+function loadTasks(){try{return JSON.parse(localStorage.getItem(STORE_KEY)||'[]')}catch(e){return[]}}
+function save(){localStorage.setItem(STORE_KEY,JSON.stringify(tasks));render()}
+function todayISO(){const d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10)}
+function isOverdue(t){return !t.done&&t.due&&t.due<todayISO()}
+function dateLabel(d){if(!d)return 'Sem prazo';const [y,m,day]=d.split('-');return `${day}/${m}/${y}`}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function taskHTML(t){const status=t.done?'<span class="tag done">Concluída</span>':isOverdue(t)?'<span class="tag overdue">Atrasada</span>':'<span class="tag">Pendente</span>';return `<div class="task"><input class="task-check" type="checkbox" aria-label="Marcar como concluída" data-toggle="${t.id}" ${t.done?'checked':''}><div class="task-main"><div class="task-title">${esc(t.name)}</div><div class="task-meta">${esc(t.subject)} · Prazo: ${dateLabel(t.due)} · Prioridade: ${esc(t.priority||'Normal')}${t.notes?' · '+esc(t.notes):''}</div></div>${status}<button class="btn btn-light btn-small" data-delete="${t.id}" aria-label="Excluir">✕</button></div>`}
+function render(){
+ const pending=tasks.filter(t=>!t.done).length,done=tasks.filter(t=>t.done).length,overdue=tasks.filter(isOverdue).length,total=tasks.length,pct=total?Math.round(done/total*100):0;
+ document.getElementById('pendingCount').textContent=pending;document.getElementById('overdueCount').textContent=overdue;document.getElementById('doneCount').textContent=done;document.getElementById('progressCount').textContent=pct+'%';document.getElementById('progressText').textContent=pct+'%';document.getElementById('progressBar').style.width=pct+'%';
+ const ordered=[...tasks].sort((a,b)=>(a.done-b.done)||((a.due||'9999').localeCompare(b.due||'9999')));
+ const upcoming=ordered.filter(t=>!t.done).slice(0,5);document.getElementById('upcomingList').innerHTML=upcoming.length?upcoming.map(taskHTML).join(''):'<div class="empty">Nenhuma atividade cadastrada ainda. Adicione sua primeira tarefa!</div>';
+ document.getElementById('activityTotal').textContent=total+' tarefa(s)';
+ const q=(document.getElementById('searchTasks')?.value||'').toLowerCase(),fs=document.getElementById('filterSubject')?.value||'',st=document.getElementById('filterStatus')?.value||'';
+ const filtered=ordered.filter(t=>(!q||(t.name+' '+t.subject+' '+(t.notes||'')).toLowerCase().includes(q))&&(!fs||t.subject===fs)&&(!st||(st==='done'&&t.done)||(st==='pending'&&!t.done&&!isOverdue(t))||(st==='overdue'&&isOverdue(t))));
+ document.getElementById('allTasks').innerHTML=filtered.length?filtered.map(taskHTML).join(''):'<div class="empty">Nenhuma atividade encontrada. Cadastre uma nova ou altere os filtros.</div>';
+ const summary=subjects.map(s=>({s,n:tasks.filter(t=>t.subject===s).length})).filter(x=>x.n).sort((a,b)=>b.n-a.n);
+ document.getElementById('subjectSummary').innerHTML=summary.length?summary.map(x=>`<div class="subject-row"><span class="subject-dot"></span><span class="subject-name">${x.s}</span><span class="subject-count">${x.n} tarefa(s)</span></div>`).join(''):'<div class="muted" style="font-size:12px">Suas matérias aparecerão aqui.</div>';
+ document.getElementById('subjectDetails').innerHTML=subjects.map(s=>{const list=tasks.filter(t=>t.subject===s),n=list.length,d=list.filter(t=>t.done).length;return `<div class="subject-row" style="padding:12px;border:1px solid var(--line);border-radius:12px"><span class="subject-dot"></span><span class="subject-name">${s}</span><span class="subject-count">${d}/${n} concluídas</span><div style="width:80px" class="progress"><span style="width:${n?d/n*100:0}%"></span></div></div>`}).join('');
+ const filterSubject=document.getElementById('filterSubject');const selectedSubject=filterSubject.value;filterSubject.innerHTML='<option value="">Todas as matérias</option>'+subjects.map(s=>`<option>${s}</option>`).join('');filterSubject.value=selectedSubject;
+}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));const titles={dashboard:'Bom dia! Vamos avançar? 👋',activities:'Organize suas atividades',assistant:'Aprenda com ajuda e explicações',subjects:'Acompanhe suas matérias',guide:'Tudo sobre a plataforma'};document.getElementById('pageTitle').textContent=titles[id]||'Sala do Futuro PRO';window.scrollTo({top:0,behavior:'smooth'});render()}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.go)));
+document.getElementById('activityForm').addEventListener('submit',e=>{e.preventDefault();const name=document.getElementById('taskName').value.trim();if(!name)return;tasks.push({id:Date.now().toString(),name,subject:document.getElementById('taskSubject').value,due:document.getElementById('taskDue').value,priority:document.getElementById('taskPriority').value,notes:document.getElementById('taskNotes').value.trim(),done:false});e.target.reset();save();toast('Atividade salva neste dispositivo!')});
+document.addEventListener('change',e=>{if(e.target.matches('[data-toggle]')){const t=tasks.find(x=>x.id===e.target.dataset.toggle);if(t){t.done=e.target.checked;save();toast(t.done?'Atividade concluída!':'Atividade reaberta.')}}});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-delete]');if(b&&confirm('Deseja excluir esta atividade?')){tasks=tasks.filter(t=>t.id!==b.dataset.delete);save();toast('Atividade excluída.')}});
+['searchTasks','filterSubject','filterStatus'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+document.getElementById('makePrompt').addEventListener('click',()=>{const question=document.getElementById('aiQuestion').value.trim();if(!question){toast('Digite ou cole uma questão primeiro.');return}currentPrompt=`Sou estudante e quero aprender, não apenas copiar a resposta.\\nMatéria: ${document.getElementById('aiSubject').value}.\\nPreferência: ${document.getElementById('aiLevel').value}.\\n\\nQuestão/dúvida:\\n${question}\\n\\nExplique o raciocínio passo a passo em linguagem simples, apresente a resposta com justificativa, destaque os conceitos importantes e termine com uma pergunta curta para eu verificar se entendi.`;document.getElementById('promptOutput').textContent=currentPrompt;toast('Pedido preparado!')});
+document.getElementById('clearPrompt').addEventListener('click',()=>{document.getElementById('aiQuestion').value='';document.getElementById('promptOutput').textContent='Sua solicitação aparecerá aqui. Depois, copie e abra o ChatGPT para receber a explicação.';currentPrompt=''});
+document.getElementById('copyPrompt').addEventListener('click',async()=>{if(!currentPrompt){toast('Prepare um pedido primeiro.');return}try{await navigator.clipboard.writeText(currentPrompt);toast('Pedido copiado!')}catch(e){toast('Selecione e copie o texto manualmente.')}});
+document.getElementById('openChatGPT').addEventListener('click',()=>{if(!currentPrompt){toast('Prepare um pedido primeiro.');return}window.open('https://chatgpt.com/?q='+encodeURIComponent(currentPrompt),'_blank','noopener')});
+const now=new Date();document.getElementById('todayLabel').textContent=now.toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});render();
+</script>
+</body>
+</html>
